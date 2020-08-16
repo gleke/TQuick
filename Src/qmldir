@@ -1,0 +1,4 @@
+module TQuick
+plugin TQuick
+classname TQuickPlugin
+typeinfo plugin.qmltypes

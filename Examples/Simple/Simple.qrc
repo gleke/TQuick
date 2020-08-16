@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/progressbar.png</file>
+        <file>images/progressbg.png</file>
+    </qresource>
+</RCC>
