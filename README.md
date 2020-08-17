@@ -65,6 +65,6 @@ Rectangle {
 | Windows 10 MSVC2017 64bit         | OK   |
 | Windows 10 MinGW 7.3.0 32bit      | OK   |
 | Windows 10 MinGW 7.3.0 64bit      | OK   |
-| MacOs 10.15.6 Clang 11.0.3 64bit  | NO   |
+| MacOs 10.15.6 Clang 11.0.3 64bit  | OK   |
 | Deepin 15.11 Clang 3.8.1 64bit    | OK   |
 | Deepin 15.11 GCC 6.3.0 64bit      | OK   |

@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 /* 矩形实体颜色区域 */
 Rectangle {

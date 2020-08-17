@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 TObject {
     id: tDialogBasic
@@ -118,15 +118,15 @@ TObject {
             width: parent.width - 10
             anchors.centerIn: parent
             TLabel {
-                text: "Dialog 基础控件"
                 theme.parent: tDialogBasicTheme
+                text: qsTr("Dialog basic control")
             }
 
             TLabel {
                 width: parent.width - 10
                 wrapMode: Text.WordWrap
                 theme.parent: tDialogBasicTheme
-                text: "重新定义bodyComponent，可实现更高级的扩展。请参考TDialog\n点击模态背景可关闭。"
+                text: qsTr("Redefining bodycomponent can realize more advanced extension. Please refer to tdialog. \nClick mode background to close.")
             }
         }
     }

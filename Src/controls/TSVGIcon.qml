@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 /* https://www.iconfont.cn
     svg 是一种比较流行的icon 源。

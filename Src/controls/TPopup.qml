@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 //带有遮挡的图层
 //    注意：他会覆盖整个屏幕

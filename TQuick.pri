@@ -43,7 +43,7 @@ QML_SHARED_BUILD = true
 ##-------------------------------------------------------------------------
 # defines TQUICK info
 isEmpty(TQUICK_LIB_VERSION_MAJOR): TQUICK_LIB_VERSION_MAJOR = 1
-isEmpty(TQUICK_LIB_VERSION_MINOR): TQUICK_LIB_VERSION_MINOR = 1
+isEmpty(TQUICK_LIB_VERSION_MINOR): TQUICK_LIB_VERSION_MINOR = 2
 isEmpty(TQUICK_LIB_VERSION_PATCH): TQUICK_LIB_VERSION_PATCH = 0
 isEmpty(TQUICK_LIB_VERSION_BUILD): TQUICK_LIB_VERSION_BUILD = 0
 isEmpty(TQUICK_LIB_VERSION_STAGE): TQUICK_LIB_VERSION_STAGE = alpha
@@ -179,14 +179,6 @@ tquickinfo.output = $$TQUICK_BUILD_DIR/Src/tquickinfo.h
 QMAKE_SUBSTITUTES += tquickinfo
 
 INCLUDEPATH += $$TQUICK_BUILD_DIR/Src
-
-
-
-##-------------------------------------------------------------------------
-# define source dirs var
-TQUICK_LIB_SOURCE_DIRS += $$TQUICK_SOURCE_DIR/Src/Libs # lib source dirs
-TQUICK_PLUGIN_SOURCE_DIRS += $$TQUICK_SOURCE_DIR/Src/Plugins # plugin source dirs
-TQUICK_QML_SOURCE_DIRS += $$TQUICK_SOURCE_DIR/Src/QMLs # qml source dirs
 
 
 

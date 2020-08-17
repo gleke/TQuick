@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 /* 滚动条-竖向
 滚动条可配合 Qt ListView ，Qt Flickable ,等等使用。

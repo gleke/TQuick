@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 Flickable {
     id: tFlickable

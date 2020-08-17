@@ -5,10 +5,13 @@
 #include <QQuickItem>
 
 /***
- * 整个框架中非常重要的一个类。
- * 除了可以初始化皮肤路径及设置启动皮肤外
- * TQuickWorld还对整个应用系统进行了初始化设置。
- * 并且他必须要创建在App ApplicationWindow 下面。
+ * the class is very important in TQuick
+ * class can do some setup work:
+ *  1.add theme file dir
+ *  2.set app start up theme
+ *  3.enable generate theme template json file to make some different theme file
+ *
+ * TQuickWorld initilize the whole application system, so it must created in App ApplicationWindow.
  *
  * QML:
  * TQuickWorld{

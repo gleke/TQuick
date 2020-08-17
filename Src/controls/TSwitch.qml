@@ -1,13 +1,11 @@
 import QtQuick 2.0
-import TQuick 1.1
+import TQuick 1.2
 
-/*!todo*/
 Item {
     id: tSwitch
     width: content.width + padding
     height: content.height + padding
 
-    /*! 内边距 设置内容与外边框的间距*/
     property int padding: 6
     property bool checked: false
 

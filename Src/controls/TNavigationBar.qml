@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import TQuick 1.1
+import TQuick 1.2
 
 // 固定导航横向的
 //    分隔内容上有关联但属于不同类别的数据集合。
@@ -29,7 +29,6 @@ Item {
 
     property int itemWidth: 0
     property int itemHeight: 0
-    /*!内边距填充大小*/
     property int padding: 8
     property int spacing: 10
     property int currentIndex: -1

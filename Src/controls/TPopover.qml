@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 // 定点弹出框
 //    与Dialog 不同的时他的小窗是指定位置的。

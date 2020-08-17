@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 /* 单选按钮组
     在组内的单选按钮选择是唯一的

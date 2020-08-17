@@ -1,6 +1,6 @@
 import QtQuick 2.6
 import QtQml 2.2
-import TQuick 1.1
+import TQuick 1.2
 
 Text {
     id: tLabel

@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import TQuick 1.1
+import TQuick 1.2
 
 /* 单选框
     在一组备选项中进行单选 (需要放入 TRadioBoxGroup)

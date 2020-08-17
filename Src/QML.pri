@@ -43,6 +43,11 @@ DISTFILES += \
     $$PWD/qmldir \
     $$PWD/TQuickLoader
 
+exists($$PWD/plugin.qmltypes) {
+    DISTFILES += \
+        $$PWD/plugin.qmltypes
+}
+
 isEqual(QML_SHARED_BUILD, "true") {
     CONFIG += sharedlib
 } else {
@@ -56,7 +61,7 @@ CONFIG += plugin plugin_with_soname
 DESTDIR = $$TQUICK_QML_DIR/$$TARGET
 TARGET = $$tLibraryTargetName($$TARGET)
 
-
+TQUICK_SOURCE_DIR = $$system_path($$clean_path($$PWD/))
 TQUICK_QMLDIR_PATH = $$system_path($$clean_path($$PWD/qmldir))
 TQUICK_INCLUDEFILE_PATH = $$system_path($$clean_path($$PWD/TQuickLoader))
 TQUICK_HEADERFILE_PATH = $$system_path($$clean_path($$PWD/tquickloader.h))
@@ -66,6 +71,7 @@ TQUICK_PLUGIN_INSTALL_DIR = $$system_path($$[QT_INSTALL_QML]/$${TQUICK_NAME})
 TQUICK_PLUGIN_DUMP_PATH = $$system_path($$[QT_INSTALL_BINS]/qmlplugindump)
 
 isEqual(QML_TEST, "true") {
+    message("TQUICK_SOURCE_DIR=" $$TQUICK_SOURCE_DIR)
     message("TQUICK_QMLDIR_PATH=" $$TQUICK_QMLDIR_PATH)
     message("TQUICK_INCLUDEFILE_PATH=" $$TQUICK_INCLUDEFILE_PATH)
     message("TQUICK_HEADERFILE_PATH=" $$TQUICK_HEADERFILE_PATH)
@@ -82,20 +88,40 @@ contains(QMAKE_HOST.os, Windows) {
     exists($${TQUICK_PLUGIN_INSTALL_DIR}) {
         QMAKE_PRE_LINK += && rd /s/q $${TQUICK_PLUGIN_INSTALL_DIR}
     }
+    exists($$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes)) {
+        QMAKE_PRE_LINK += && copy $$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes) $${TQUICK_LIB_OUTPUT_DIR}
+    }
     isEqual(QML_SHARED_BUILD, "true") {
-        QMAKE_POST_LINK += md $${TQUICK_PLUGIN_INSTALL_DIR} &&
-        QMAKE_POST_LINK += copy $${TQUICK_LIB_OUTPUT_DIR} $${TQUICK_PLUGIN_INSTALL_DIR} &&
-        QMAKE_POST_LINK += $$system_path($$[QT_INSTALL_BINS]/qmlplugindump) -notrelocatable $${TQUICK_NAME} $${TQUICK_LIB_VERSION} $$system_path($$[QT_INSTALL_QML]) > $$system_path($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes) &&
-        QMAKE_POST_LINK += copy $$system_path($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes) $${TQUICK_LIB_OUTPUT_DIR}
+        QMAKE_POST_LINK += md $${TQUICK_PLUGIN_INSTALL_DIR}
+        QMAKE_POST_LINK += && copy $${TQUICK_LIB_OUTPUT_DIR} $${TQUICK_PLUGIN_INSTALL_DIR}
+#        QMAKE_POST_LINK += && $$system_path($$[QT_INSTALL_BINS]/qmlplugindump) -notrelocatable $${TQUICK_NAME} $${TQUICK_LIB_VERSION} $$system_path($$[QT_INSTALL_QML]) > $$system_path($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes)
+#        TQUICK_PLUGIN_QMLTYPES_CONTENT = $$cat($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes, blob)
+#        !isEmpty(TQUICK_PLUGIN_QMLTYPES_CONTENT) {
+#            QMAKE_POST_LINK += && copy $$system_path($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes) $${TQUICK_LIB_OUTPUT_DIR}
+#            exists($$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes)) {
+#                QMAKE_POST_LINK += && rd /s/q $$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes)
+#            }
+#            QMAKE_POST_LINK += && copy $$system_path($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes) $${TQUICK_SOURCE_DIR}
+#        }
     }
 } else {
     QMAKE_PRE_LINK += cp $$TQUICK_QMLDIR_PATH $${TQUICK_LIB_OUTPUT_DIR};
     QMAKE_PRE_LINK += cp $$TQUICK_INCLUDEFILE_PATH $${TQUICK_LIB_OUTPUT_DIR};
     QMAKE_PRE_LINK += cp $$TQUICK_HEADERFILE_PATH $${TQUICK_LIB_OUTPUT_DIR};
-    QMAKE_PRE_LINK += rm -rf $${TQUICK_PLUGIN_INSTALL_DIR};
+    QMAKE_PRE_LINK += rm -rf $${TQUICK_PLUGIN_INSTALL_DIR};   
+    exists($$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes)) {
+        QMAKE_PRE_LINK += cp $$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes) $${TQUICK_LIB_OUTPUT_DIR};
+    }
     isEqual(QML_SHARED_BUILD, "true") {
         QMAKE_POST_LINK += cp -rf $${TQUICK_LIB_OUTPUT_DIR} $$[QT_INSTALL_QML];
         QMAKE_POST_LINK += $$[QT_INSTALL_BINS]/qmlplugindump -notrelocatable $${TQUICK_NAME} $${TQUICK_LIB_VERSION} $$[QT_INSTALL_QML] > $${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes;
-        QMAKE_POST_LINK += cp $${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes $${TQUICK_LIB_OUTPUT_DIR};
+        TQUICK_PLUGIN_QMLTYPES_CONTENT = $$cat($${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes, blob)
+        !isEmpty(TQUICK_PLUGIN_QMLTYPES_CONTENT) {
+            QMAKE_POST_LINK += cp $${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes $${TQUICK_LIB_OUTPUT_DIR};
+            exists($$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes)) {
+                QMAKE_POST_LINK += rm $$system_path($${TQUICK_SOURCE_DIR}/plugin.qmltypes);
+            }
+            QMAKE_POST_LINK += cp $${TQUICK_PLUGIN_INSTALL_DIR}/plugin.qmltypes $${TQUICK_SOURCE_DIR};
+        }
     }
 }

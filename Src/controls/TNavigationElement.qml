@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import TQuick 1.1
+import TQuick 1.2
 
 TObject{
     property string text
